@@ -48,7 +48,7 @@ export function FaqCta() {
               </h2>
             </div>
 
-            <Accordion type="single" defaultValue="item-0" className="space-y-4">
+            <Accordion defaultValue={["item-0"]} className="space-y-4">
               {faqs.map((faq, idx) => (
                 <motion.div
                   key={idx}

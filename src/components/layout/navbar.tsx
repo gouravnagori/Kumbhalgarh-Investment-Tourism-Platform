@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu, X, ChevronRight, MapPin, Phone } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
@@ -20,28 +20,6 @@ export function Navbar() {
 
   return (
     <>
-      {/* Top bar */}
-      <div className={cn(
-        "hidden lg:block w-full border-b border-border/50 transition-all duration-500",
-        isScrolled ? "h-0 overflow-hidden opacity-0" : "h-auto opacity-100"
-      )}>
-        <div className="luxury-container flex items-center justify-between py-2 text-xs text-muted-foreground">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5">
-              <MapPin className="h-3 w-3 text-terracotta-400" />
-              Kumbhalgarh, Rajsamand, Rajasthan
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Phone className="h-3 w-3 text-forest-500" />
-              +91 98XXX XXXXX
-            </span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="text-gold-500 font-medium">The Crown of the Aravallis</span>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navbar */}
       <motion.header
         className={cn(

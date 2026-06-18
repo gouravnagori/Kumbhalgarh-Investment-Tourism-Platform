@@ -39,7 +39,13 @@ export const COLORS = {
 } as const;
 
 // ─── Navigation Links ──────────────────────────────────────────────────────
-export const NAV_LINKS = [
+export interface NavLink {
+  label: string;
+  href: string;
+  highlight?: boolean;
+}
+
+export const NAV_LINKS: readonly NavLink[] = [
   { label: "Invest", href: "/properties", highlight: true },
   { label: "Hotels & Resorts", href: "/hotels" },
   { label: "Tourism", href: "/tourism" },
