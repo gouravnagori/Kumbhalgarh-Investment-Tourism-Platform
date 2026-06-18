@@ -40,10 +40,6 @@ export function Navbar() {
               style={{ position: "relative" }}
             >
               <span className="text-lg font-bold text-gold-300 font-heading">K</span>
-              <div 
-                className="absolute h-2.5 w-2.5 rounded-full bg-gold-400 border-2 border-background" 
-                style={{ position: "absolute", top: "-2px", right: "-2px" }}
-              />
             </div>
             <div className="flex flex-col">
               <span className="text-lg font-bold tracking-tight text-foreground font-heading leading-none">
@@ -70,12 +66,6 @@ export function Navbar() {
                 style={{ position: "relative" }}
               >
                 {link.label}
-                {link.highlight && (
-                  <span 
-                    className="absolute h-1.5 w-1.5 rounded-full bg-gold-400" 
-                    style={{ position: "absolute", top: "2px", right: "2px" }}
-                  />
-                )}
               </Link>
             ))}
           </div>
