@@ -57,9 +57,15 @@ export function Navbar() {
         <nav className="luxury-container flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative h-10 w-10 rounded-lg bg-gradient-to-br from-forest-600 to-forest-800 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300">
+            <div 
+              className="relative h-10 w-10 rounded-lg bg-gradient-to-br from-forest-600 to-forest-800 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300"
+              style={{ position: "relative" }}
+            >
               <span className="text-lg font-bold text-gold-300 font-heading">K</span>
-              <div className="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-gold-400 border-2 border-background" />
+              <div 
+                className="absolute h-2.5 w-2.5 rounded-full bg-gold-400 border-2 border-background" 
+                style={{ position: "absolute", top: "-2px", right: "-2px" }}
+              />
             </div>
             <div className="flex flex-col">
               <span className="text-lg font-bold tracking-tight text-foreground font-heading leading-none">
@@ -83,10 +89,14 @@ export function Navbar() {
                     ? "text-forest-700 dark:text-forest-300 hover:bg-forest-50 dark:hover:bg-forest-900/30"
                     : "text-foreground/70 hover:text-foreground hover:bg-accent/50"
                 )}
+                style={{ position: "relative" }}
               >
                 {link.label}
                 {link.highlight && (
-                  <span className="absolute -top-0.5 -right-0.5 h-1.5 w-1.5 rounded-full bg-gold-400" />
+                  <span 
+                    className="absolute h-1.5 w-1.5 rounded-full bg-gold-400" 
+                    style={{ position: "absolute", top: "2px", right: "2px" }}
+                  />
                 )}
               </Link>
             ))}
