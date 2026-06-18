@@ -14,6 +14,13 @@ export default function ContactPage() {
     type: "general",
   });
 
+  const [callbackSubmitted, setCallbackSubmitted] = useState(false);
+  const [callbackData, setCallbackData] = useState({
+    name: "",
+    phone: "",
+    timeSlot: "anytime",
+  });
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -26,6 +33,12 @@ export default function ContactPage() {
     e.preventDefault();
     // Phase 2: Will integrate with backend API
     alert("Thank you! Your message has been received. Our team will respond within 24 hours.");
+  };
+
+  const handleCallbackSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Phase 2: Will integrate with backend API
+    setCallbackSubmitted(true);
   };
 
   return (
@@ -224,6 +237,87 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Request a Callback Card */}
+            <div className="bg-card border border-border rounded-3xl p-8 shadow-sm">
+              <h3 className="text-lg font-bold font-heading text-foreground mb-2">
+                Request a Callback
+              </h3>
+              <p className="text-xs text-muted-foreground mb-6 font-light">
+                Busy? Leave your number and our investment manager will call you back.
+              </p>
+              
+              {callbackSubmitted ? (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-forest-50 dark:bg-forest-950/20 border border-forest-500/20 rounded-2xl p-6 text-center space-y-3"
+                >
+                  <div className="mx-auto h-12 w-12 rounded-full bg-forest-100 dark:bg-forest-900/50 flex items-center justify-center text-forest-600 dark:text-forest-400">
+                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h4 className="text-sm font-bold text-foreground">Callback Scheduled!</h4>
+                  <p className="text-xs text-muted-foreground">
+                    We will call you back at your preferred time.
+                  </p>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleCallbackSubmit} className="space-y-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                      Your Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={callbackData.name}
+                      onChange={(e) => setCallbackData(prev => ({ ...prev, name: e.target.value }))}
+                      placeholder="Enter your name"
+                      className="px-4 py-2.5 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-forest-500/50 focus:border-forest-500/30 transition-all text-xs"
+                    />
+                  </div>
+                  
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      value={callbackData.phone}
+                      onChange={(e) => setCallbackData(prev => ({ ...prev, phone: e.target.value }))}
+                      placeholder="+91 98XXX XXXXX"
+                      className="px-4 py-2.5 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-forest-500/50 focus:border-forest-500/30 transition-all text-xs"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                      Best Time to Call
+                    </label>
+                    <select
+                      value={callbackData.timeSlot}
+                      onChange={(e) => setCallbackData(prev => ({ ...prev, timeSlot: e.target.value }))}
+                      className="px-4 py-2.5 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-forest-500/50 focus:border-forest-500/30 transition-all text-xs appearance-none"
+                    >
+                      <option value="anytime">Anytime (As soon as possible)</option>
+                      <option value="morning">Morning (9:00 AM – 12:00 PM)</option>
+                      <option value="afternoon">Afternoon (12:00 PM – 4:00 PM)</option>
+                      <option value="evening">Evening (4:00 PM – 7:00 PM)</option>
+                    </select>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-3 px-4 rounded-xl bg-forest-600 hover:bg-forest-700 text-white font-bold shadow-md hover:shadow-lg transition-all duration-300 text-xs flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    Request Call
+                  </button>
+                </form>
+              )}
             </div>
 
             {/* WhatsApp CTA */}
